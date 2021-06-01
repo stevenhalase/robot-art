@@ -1,0 +1,65 @@
+@import './_variables';
+
+.button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 16px 216px;
+	background: $gray3;
+	border: 2px solid $gray3;
+	border-radius: 8px;
+	font-family: $font-family;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 21px;
+	color: $white;
+	text-align: center;
+	white-space: nowrap;
+
+	&:hover {
+		background: $gray2;
+		border: 2px solid $gray2;
+		cursor: pointer;
+	}
+
+	&--secondary {
+		color: $gray3;
+		background: $white;
+		border: 2px solid $gray3;
+		box-sizing: border-box;
+		border-radius: 8px;
+
+		&:hover {
+			background: $gray0;
+			border: 2px solid $gray3;
+		}
+	}
+
+	&--text {
+		border: none;
+		background: none;
+		color: $gray3;
+		text-decoration-line: underline;
+
+		&:hover {
+			border: none;
+			background: none;
+			color: $gray3;
+		}
+	}
+
+	&:active {
+		background: $gray3;
+		border: 2px solid $gray3;
+		color: $white;
+	}
+
+	&:disabled {
+		background: $gray0;
+		border: 2px solid $gray0;
+		color: $gray3;
+		pointer-events: none;
+	}
+}

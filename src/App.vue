@@ -1,32 +1,57 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<template v-for="(message, index) of messages">
+			<toast
+				:key="index"
+				:message="message" />
+		</template>
+		<navigation v-if="shouldShowNav" />
+		<div class="view">
+			<loader v-if="loading" />
+			<router-view/>
+		</div>
+	</div>
 </template>
+
+<script>
+import Navigation from '@/components/Navigation';
+import Toast from '@/components/Toast';
+import Loader from '@/components/Loader';
+import { mapState } from 'vuex';
+
+export default {
+	name: 'app',
+	components: {
+		Navigation,
+		Toast,
+		Loader
+	},
+	computed: {
+		...mapState({
+			messages: state => state.messages,
+			loading: state => state.loading
+		}),
+		shouldShowNav() {
+			let show = false;
+			const navlessRoutes = ['login', 'register'];
+			if (!navlessRoutes.some(r => r === this.$route.name)) {
+				show = true;
+			}
+			return show;
+		}
+	}
+}
+</script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+	position: relative;
+	background: $gray0;
+	min-height: 100vh;
+	width: 100vw;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+	.view {
+		padding-top: 80px;
+	}
 }
 </style>
