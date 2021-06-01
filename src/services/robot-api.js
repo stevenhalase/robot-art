@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'https://robot-art-api.herokuapp.com/';
 
 class RobotAPIService {
 	static async login(email, password) {
