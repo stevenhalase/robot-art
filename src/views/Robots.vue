@@ -1,6 +1,6 @@
 <template>
 	<div class="robots">
-		<h1>Robots</h1>
+		<h1>{{ title }}</h1>
 		<robots-list :view="view" />
 	</div>
 </template>
@@ -32,6 +32,15 @@ export default {
 				view = 'admin';
 			}
 			return view;
+		},
+		title() {
+			let title = 'Robots';
+			if (this.view === 'results') {
+				title = 'Results';
+			} else if (this.view === 'admin') {
+				title = 'Admin';
+			}
+			return title;
 		}
 	}
 }
